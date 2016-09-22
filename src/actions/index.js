@@ -1,8 +1,13 @@
-import {CHANGE_SOMEBODY} from './actionsTypes'
+import {GET_POSTS, GET_POST} from './actionsTypes'
+import superagentFactory from '../helpers/superagentFactory'
 
-export function setName(name = 'world'){
+const superagent = superagentFactory();
+
+export function getPosts(){
     return {
-        type: CHANGE_SOMEBODY,
-        payload: name
+        type: GET_POSTS,
+        payload: superagent
+            .get('/getPosts/')
+            .then(res => res.body)
     }
 }

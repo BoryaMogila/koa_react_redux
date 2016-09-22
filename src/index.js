@@ -1,25 +1,24 @@
 import React from 'react';
-import {render} from 'react-dom';
-import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux'
-import { configureStore, DevTools } from './store'
-import getStateForApp from './middlewares/getStateForApp'
+//noinspection JSUnresolvedVariable
+import reactDom from 'react-dom'
+import reactRedux from 'react-redux'
+import Router from 'react-router'
+import reactRouterRedux from 'react-router-redux'
+import thunkMiddleware from 'redux-thunk'
+import reduxMulti from 'redux-multi'
+import redux from 'redux'
+import promiseMiddleware from 'redux-promise-middleware'
+import BabelFish from 'babelfish'
+import superagentWithCache from 'superagent-cache'
+import superagentPrefix from 'superagent-prefix'
+import superagent from 'superagent-use'
+import superagentPromisePlugin from 'superagent-promise-plugin'
 
-import routes from './routes';
-const store = configureStore(browserHistory, window.init, [getStateForApp]);
-const history = syncHistoryWithStore(browserHistory, store);
 
-render(
-<Provider store={store}>
-    <Router history={history} routes={routes} />
-    </Provider>
-    , document.querySelector('#conteiner')
-);
 
-render(
-    <Provider store={store}>
-        <DevTools/>
-    </Provider>,
-    document.getElementById('devtools')
+require.ensure(
+    [],
+    (require) => {
+        require('./app.js')
+    }
 );

@@ -1,12 +1,9 @@
 import Router from 'koa-router';
 import reactApp from '../controllers/reactAppController';
-import baseAutoApp from '../controllers/baseAutoAppController';
-import convert from 'koa-convert';
-
+import getPosts from '../controllers/getPostsController';
 let router = Router();
 
-router.get('/jsadmin/', reactApp);
-router.get('/jsadmin/baseAuto/listAuto/', baseAutoApp.listAuto);
-
+router.get('/getPosts/', getPosts);
+router.get('/app/*', reactApp);
 
 export default router;
