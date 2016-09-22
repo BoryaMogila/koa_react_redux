@@ -15,7 +15,6 @@ export default async function(ctx) {
     const history = syncHistoryWithStore(memoryHistory, store);
     const location = ctx.originalUrl;
     let renderWait, component;
-    console.log(location)
     match({history, routes, location},  function (error, redirectLocation, renderProps){
         renderWait = fetchComponentData(
             store.dispatch,

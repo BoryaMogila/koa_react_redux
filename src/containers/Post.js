@@ -26,8 +26,6 @@ class Post extends Component {
     }
  }
 function mapStateToProps(state, ownProps) {
-    console.log(state);
-    console.log(ownProps.params.id);
     return {
         post: state.posts[ownProps.params.id]
     };

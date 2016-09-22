@@ -47,3 +47,8 @@ jspm_packages
 .idea/modules.xml
 .idea/workspace.xml
 
+.public
+.public/*
+.build
+.build/*
+
