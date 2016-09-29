@@ -6,11 +6,7 @@ import bodyparser from './helpers/bodyParser';
 import render from './helpers/render';
 import router from './helpers/router';
 
-
 let app = new Koa();
-
-
-
 
 bodyparser(app);
 render(app, config);
