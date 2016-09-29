@@ -4,7 +4,8 @@
 import superagentWithCache from 'superagent-cache';
 import config from './config'
 import superagentPrefix from 'superagent-prefix'
-import superagent from 'superagent-use'
+import agentUse from 'superagent-use'
+import superagent from 'superagent'
 import superagentPromisePlugin from 'superagent-promise-plugin'
 
 
@@ -17,10 +18,11 @@ import superagentPromisePlugin from 'superagent-promise-plugin'
  */
 export default (params) => {
     params = params || {};
-    superagent.use(superagentPrefix(params.baseUrl || config.baseURL));
-    superagentWithCache(superagent, undefined, {expiration: params.cacheTime || undefined});
+    const agent = agentUse(superagent);
+    agent.use(superagentPrefix(params.baseUrl || config.baseURL));
+    superagentWithCache(agent, undefined, {expiration: params.cacheTime || undefined});
     if (params.withPromise !== false) {
-        superagentPromisePlugin.patch(superagent);
+        superagentPromisePlugin.patch(agent);
     }
-    return superagent;
+    return agent;
 }

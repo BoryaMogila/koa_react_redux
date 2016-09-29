@@ -47,7 +47,7 @@
     "superagent-cache": "^1.6.0",
     "superagent-prefix": "latest",
     "superagent-promise-plugin": "latest",
-    "superagent-use": "latest"
+    "superagent-use": "0.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.2.1",

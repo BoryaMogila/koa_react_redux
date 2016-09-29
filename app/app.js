@@ -14,7 +14,7 @@ let app = new Koa();
 
 bodyparser(app);
 render(app, config);
-app.use(serve('/var/www/html/isomorphicSkeleton/public'));
+//app.use(serve('/var/www/html/isomorphicSkeleton/public'));
 router(app);
 
 app.listen(config.server.port, function () {
