@@ -3,9 +3,6 @@ import Route from 'react-router/lib/Route'
 import IndexRoute from 'react-router/lib/IndexRoute'
 import App from './components/App';
 
-
-if (typeof require.ensure !== 'function') require.ensure = (arg, cb) => cb(require);
-
 const
     getPosts = (nextState, callback) => require.ensure(
         [],
