@@ -1,6 +1,3 @@
-/**
- * Created by max on 7/27/16.
- */
 import superagentWithCache from 'superagent-cache';
 import config from './config'
 import superagentPrefix from 'superagent-prefix'

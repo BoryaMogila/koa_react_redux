@@ -27,7 +27,6 @@ module.exports = {
                 exclude: /node_modules/,
                 query: {
                     plugins: babelPlugins,
-                    presets: ['stage-0', "react", "es2015-node6"],
                 }
             },
             {

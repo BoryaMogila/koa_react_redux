@@ -87,7 +87,6 @@ const wpConfig = {
                 exclude: /node_modules/,
                 query: {
                     plugins: babelPlugins,
-                    presets: ['es2015', 'stage-0', 'react'],
                 }
             },
             {
