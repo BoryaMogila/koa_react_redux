@@ -16,6 +16,16 @@ export default async function(ctx) {
     const location = ctx.originalUrl;
     let renderWait, component;
     match({history, routes, location},  function (error, redirectLocation, renderProps){
+        if (error) {
+            ctx.status(500).send(error.message);
+            return;
+        } else if (redirectLocation) {
+            ctx.redirect(302, redirectLocation.pathname + redirectLocation.search);
+            return;
+        } else if(!renderProps){
+            ctx.status = 404;
+            return;
+        }
         renderWait = fetchComponentData(
             store.dispatch,
             renderProps.components,

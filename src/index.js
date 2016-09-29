@@ -1,24 +1,28 @@
 import React from 'react';
-//noinspection JSUnresolvedVariable
-import reactDom from 'react-dom'
-import reactRedux from 'react-redux'
-import Router from 'react-router'
-import reactRouterRedux from 'react-router-redux'
-import thunkMiddleware from 'redux-thunk'
-import reduxMulti from 'redux-multi'
-import redux from 'redux'
-import promiseMiddleware from 'redux-promise-middleware'
-import BabelFish from 'babelfish'
-import superagentWithCache from 'superagent-cache'
-import superagentPrefix from 'superagent-prefix'
-import superagent from 'superagent-use'
-import superagentPromisePlugin from 'superagent-promise-plugin'
+import {render} from 'react-dom';
+import {Provider} from 'react-redux';
+import browserHistory from 'react-router/lib/browserHistory'
+import match from 'react-router/lib/match'
+import Router from 'react-router/lib/Router'
+import { syncHistoryWithStore } from 'react-router-redux'
+import { configureStore} from './storeCinfigurator'
+import createRoutes from './routes';
+
+if (process.env.NODE_ENV === 'development') {
+    require('expose?Perf!react-addons-perf');
+}
+
+const store = configureStore(browserHistory, window.init, []);
+const routes = createRoutes();
+const history = syncHistoryWithStore(browserHistory, store);
+
+match({routes, history}, (error, redirectLocation, renderProps) => {
+    render(
+        <Provider store={store}>
+                <Router {...renderProps}/>
+        </Provider>
+        , document.getElementById('content')
+    );
+});
 
 
-
-require.ensure(
-    [],
-    (require) => {
-        require('./app.js')
-    }
-);

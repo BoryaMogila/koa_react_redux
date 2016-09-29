@@ -2,7 +2,9 @@ import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router'
+import Helmet from "react-helmet"
 import {getPosts} from '../actions'
+
 
 class Posts extends Component {
     constructor(props) {
@@ -25,7 +27,12 @@ class Posts extends Component {
     };
     render(){
         return (
-            <div>{this.showPosts()}</div>
+            <div>
+                <Helmet
+                    title="Posts about react"
+                />
+                {this.showPosts()}
+            </div>
         );
     }
 }
