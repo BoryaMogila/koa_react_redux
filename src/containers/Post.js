@@ -21,6 +21,8 @@ class Post extends Component {
             <div>
                 <div>{post.title}</div>
                 <div>{post.text}</div>
+                <br />
+                <Link to="/app/">Return</Link>
             </div>
         );
     }

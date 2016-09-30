@@ -1,4 +1,4 @@
-import {GET_POSTS, GET_POST} from './actionsTypes'
+import {GET_POSTS} from './actionsTypes'
 import superagentFactory from '../helpers/superagentFactory'
 
 const superagent = superagentFactory();
