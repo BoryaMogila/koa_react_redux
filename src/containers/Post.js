@@ -2,6 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router'
+import Helmet from "react-helmet"
 import {getPosts} from '../actions'
 
 class Post extends Component {
@@ -18,11 +19,23 @@ class Post extends Component {
     render(){
         let {post} = this.props;
         return (
-            <div>
-                <div>{post.title}</div>
-                <div>{post.text}</div>
-                <br />
-                <Link to="/app/">Return</Link>
+            <div className="jumbotron">
+                <Helmet
+                    title={post.title}
+                    meta={[
+                        {"name": "description", "content": post.text}
+                    ]}
+                    link={[
+                        {"rel": "stylesheet", "href": "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.4/css/bootstrap.css"}
+                    ]}
+                />
+                <div className="container">
+                    <h1 className="display-3">{post.title}</h1>
+                    <p>{post.text}</p>
+                    <p>
+                        <Link className="btn btn-primary btn-lg" href="/app/" role="button">Return</Link>
+                    </p>
+                </div>
             </div>
         );
     }

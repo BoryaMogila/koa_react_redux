@@ -19,7 +19,7 @@ class Posts extends Component {
     showPosts = () => {
         return this.props.posts.map((post, index) => {
             return (
-                <Link key={index} to={`/app/post/${index}`} >
+                <Link className="list-group-item" key={index} to={`/app/post/${index}`} >
                     <div>{post.title}</div>
                 </Link>
             );
@@ -30,8 +30,16 @@ class Posts extends Component {
             <div>
                 <Helmet
                     title="Posts about react"
+                    meta={[
+                        {"name": "description", "content": "Description inserted by helmet"}
+                    ]}
+                    link={[
+                        {"rel": "stylesheet", "href": "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap-rtl.css"}
+                    ]}
                 />
-                {this.showPosts()}
+                <div className="list-group">
+                    {this.showPosts()}
+                </div>
             </div>
         );
     }

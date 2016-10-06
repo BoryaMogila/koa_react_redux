@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "run": "NODE_ENV=development concurrently \"supervisor --watch build,app,config,src index.js\" \"webpack\"",
-    "run-with-build": "NODE_ENV=development concurrently \"webpack --watch --config \"./webpack.server.config.js\"\" \"supervisor --watch app,config,src,build ./build/backend.js\" \"webpack\"",
+    "run-with-build": "NODE_ENV=development concurrently \"webpack --watch --config \"./webpack.server.config.js\"\" \"supervisor --watch build ./build/backend.js\" \"webpack\"",
     "build-production": "git pull; npm install; NODE_ENV=production webpack",
     "run-production": "git pull; npm install; webpack --config ./webpack.server.config.js; /etc/nginx/conf.vs/dom_react/upstream.source/node.sh restart; journalctl -f"
   },
