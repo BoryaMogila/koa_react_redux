@@ -7,7 +7,7 @@
     "run": "NODE_ENV=development concurrently \"supervisor --watch build,app,config,src index.js\" \"webpack\"",
     "run-with-build": "NODE_ENV=development concurrently \"webpack --watch --config \"./webpack.server.config.js\"\" \"supervisor --watch build ./build/backend.js\" \"webpack\"",
     "build-production": "git pull; npm install; NODE_ENV=production webpack",
-    "run-production": "git pull; npm install; webpack --config ./webpack.server.config.js; /etc/nginx/conf.vs/dom_react/upstream.source/node.sh restart; journalctl -f"
+    "run-production": "git pull; npm install; webpack --config ./webpack.server.config.js; NODE_ENV=production node ./build/backend.js"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,7 @@
     "react-router": "^2.6.1",
     "react-router-redux": "^4.0.5",
     "redux": "^3.0.4",
+    "redux-form": "^6.1.0",
     "redux-multi": "^0.1.0",
     "redux-promise-middleware": "^4.0.0",
     "redux-thunk": "^2.1.0",

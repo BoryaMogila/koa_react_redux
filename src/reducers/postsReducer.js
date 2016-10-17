@@ -1,4 +1,4 @@
-import {GET_POSTS, PENDING, SUCCESS, ERROR} from '../actions/actionsTypes';
+import {GET_POSTS, PENDING, SUCCESS, ERROR, DELETE_POST} from '../actions/actionsTypes';
 
 
 export default function(state = [], action = {}){
@@ -9,6 +9,8 @@ export default function(state = [], action = {}){
             return state;
         case GET_POSTS + ERROR:
             return state;
+        case DELETE_POST + SUCCESS:
+            return action.payload.posts;
         default:
             return state;
     }

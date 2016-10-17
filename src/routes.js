@@ -15,6 +15,18 @@ const
         (require) => {
             callback(null, require("./containers/Post").default)
         }
+    ),
+    addPost = (nextState, callback) => require.ensure(
+        [],
+        (require) => {
+            callback(null, require("./containers/EditPost").default)
+        }
+    ),
+    editPost = (nextState, callback) => require.ensure(
+        [],
+        (require) => {
+            callback(null, require("./containers/EditPost").default)
+        }
     );
 
 function createRoutes() {
@@ -22,6 +34,8 @@ function createRoutes() {
         <Route path="/app/" component={App}>
             <IndexRoute getComponent={getPosts}/>
             <Route path='post/:id' getComponent={getPost}/>
+            <Route path='edit-post/:id' getComponent={editPost}/>
+            <Route path='add-post/' getComponent={editPost}/>
         </Route>
     )
 }

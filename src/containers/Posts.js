@@ -3,7 +3,8 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router'
 import Helmet from "react-helmet"
-import {getPosts} from '../actions'
+import {getPosts, deletePost} from '../actions'
+
 
 
 class Posts extends Component {
@@ -17,11 +18,20 @@ class Posts extends Component {
         return Promise.all(promiseArr);
     }
     showPosts = () => {
-        return this.props.posts.map((post, index) => {
+        const {posts, dispatch} = this.props;
+        return posts.map((post, index) => {
             return (
-                <Link className="list-group-item" key={index} to={`/app/post/${index}`} >
-                    <div>{post.title}</div>
-                </Link>
+                <div className="list-group-item" key={index}>
+                    <Link className="inline" to={`/app/post/${post.id}`} >
+                        <div>{post.title}</div>
+                    </Link>
+                    <div className="btn-group">
+                        <Link to={`/app/edit-post/${post.id}`}
+                                className="btn btn-sm btn-primary inline">Редактировать</Link>
+                        <button onClick={() => dispatch(deletePost(post.id))}
+                            className="btn btn-sm btn-danger inline">Удалить</button>
+                    </div>
+                </div>
             );
         })
     };
@@ -40,6 +50,7 @@ class Posts extends Component {
                 <div className="list-group">
                     {this.showPosts()}
                 </div>
+                <Link to="/app/add-post/" className="btn btn-primary btn-sm">Создать статью</Link>
             </div>
         );
     }
