@@ -1,4 +1,4 @@
-import {GET_POSTS, DELETE_POST, EDIT_POST} from './actionsTypes'
+import {GET_POSTS, SUCCESS, DELETE_POST, EDIT_POST} from './actionsTypes'
 import superagentFactory from '../helpers/superagentFactory'
 import {initialize} from 'redux-form'
 import {push} from 'react-router-redux'
@@ -40,7 +40,7 @@ export function addOrEditPost({id, title, text, dispatch}){
         .then(({posts, status, id}) => {
             if(posts.length){
                 dispatch({
-                    type: GET_POSTS,
+                    type: GET_POSTS + SUCCESS,
                     payload: posts
                 })
             }

@@ -39,9 +39,7 @@ class EditPost extends Component{
     };
     handleSubmit = (values) => {
         const {dispatch} = this.props;
-        console.log(values);
         addOrEditPost({...values, dispatch});
-        dispatch(push('/app/'));
         // Do something with the form values
 
     };
