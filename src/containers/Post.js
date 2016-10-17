@@ -33,7 +33,7 @@ class Post extends Component {
                     <h1 className="display-3">{post.title}</h1>
                     <p>{post.text}</p>
                     <p>
-                        <Link className="btn btn-primary btn-lg" href="/app/" role="button">Return</Link>
+                        <Link className="btn btn-primary btn-lg" to="/app/" role="button">Return</Link>
                     </p>
                 </div>
             </div>
