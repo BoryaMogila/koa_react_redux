@@ -5,7 +5,7 @@ import browserHistory from 'react-router/lib/browserHistory'
 import match from 'react-router/lib/match'
 import Router from 'react-router/lib/Router'
 import { syncHistoryWithStore } from 'react-router-redux'
-import { configureStore} from './storeCinfigurator'
+import { configureStore} from './storeConfigurator'
 import createRoutes from './routes';
 
 if (process.env.NODE_ENV === 'development') {

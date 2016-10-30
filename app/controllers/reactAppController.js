@@ -6,7 +6,7 @@ import fetchComponentData from './../helpers/fetchComponentData';
 import {syncHistoryWithStore} from 'react-router-redux'
 import Html from '../../src/components/Html';
 import createRoutes from '../../src/routes';
-import {configureStore} from './../../src/storeCinfigurator'
+import {configureStore} from '../../src/storeConfigurator'
 
 export default async function(ctx) {
     const memoryHistory = createMemoryHistory(ctx.originalUrl);
