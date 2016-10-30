@@ -1,24 +1,26 @@
 import React from 'react';
 import { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import {validate, asyncValidate} from '../helpers/formValidate';
 
 class AddPost extends Component {
+    renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
+        <div  className="form-group">
+            <label>{label}</label>
+            <div>
+                <input
+                    className="form-control"
+                    {...input} placeholder={label} type={type}/>
+                {touched && ((error && <div className="alert alert-danger">{error}</div>))}
+            </div>
+        </div>
+    );
     render(){
         const {handleSubmit, submitText, reset, deletePost} = this.props;
         return (
             <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="title">Заголовок</label>
-                    <Field
-                        className="form-control"
-                        name="title" component="input" type="text"/>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="text">Текст</label>
-                    <Field
-                        className="form-control"
-                        name="text" component="input" type="text"/>
-                </div>
+                <Field name="title" component={this.renderField} label="Заголовок"/>
+                <Field name="text" component={this.renderField} label="Текст"/>
                 <div className="btn-group">
                     <button className="btn btn-warning" type="button" onClick={reset}>Очистить форму</button>
                     {deletePost ?
@@ -31,7 +33,10 @@ class AddPost extends Component {
     }
 }
 AddPost = reduxForm({
-    form: 'post' // a unique name for this form
+    form: 'post', // a unique name for this form
+    validate,
+    asyncValidate,
+    asyncBlurFields: [ 'title' ]
 })(AddPost);
 
 export default AddPost;
