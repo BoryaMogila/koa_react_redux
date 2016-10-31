@@ -17,12 +17,26 @@ let data = [
     }
 ];
 
+function validate({title, text}){
+    let errors = {};
+    if(title.search(/[<>\}\{\[\]]/ig) !== -1){
+        errors.title = 'Опасный заголовок!!!';
+    }
+    if(text.search(/[<>\}\{\[\]]/ig) !== -1){
+        errors.text = 'Опасный текст!!!';
+    }
+    return errors;
+}
 export const getAllPosts = async function getAllPosts(){
     return data;
 };
 
 export const editPost = async function editPost({id, title, text}){
     let status = 'error';
+    const errors = validate({title, text});
+    if(Object.keys(errors).length){
+        return {status, posts: data, errors};
+    }
     if(id && text && title){
         data.map((post, index) => {
             if(post.id == id){

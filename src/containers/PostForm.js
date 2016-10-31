@@ -16,7 +16,7 @@ class AddPost extends Component {
         </div>
     );
     render(){
-        const {handleSubmit, submitText, reset, deletePost} = this.props;
+        const {error, handleSubmit, submitText, reset, deletePost} = this.props;
         return (
             <form onSubmit={handleSubmit}>
                 <Field name="title" component={this.renderField} label="Заголовок"/>
@@ -28,6 +28,7 @@ class AddPost extends Component {
                         : null}
                     <button className="btn btn-primary" type="submit">{submitText}</button>
                 </div>
+                {error && <div className="alert alert-danger">{error}</div>}
             </form>
         );
     }

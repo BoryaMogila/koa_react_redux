@@ -39,7 +39,7 @@ class EditPost extends Component{
     };
     handleSubmit = (values) => {
         const {dispatch} = this.props;
-        addOrEditPost({...values, dispatch});
+        return addOrEditPost({...values, dispatch});
         // Do something with the form values
 
     };
