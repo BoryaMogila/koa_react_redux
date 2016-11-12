@@ -1,22 +1,16 @@
 require("./app/app.js");
 
-// ./routes
-import React from 'react';
-import {Route, IndexRoute} from 'react-router'
+app.get("/users", function(req, res, next){
+User.find(function(err, users){
+   if (err) { return next(err); }
+   // ваша логіка
+   });
+});
+app.use(function(err, req, res, next) {
+   res.status(err.status || 500);
+   res.render('error', {
+      message: err.message,
+      error: err
+   });
+});
 
-const getSomeComponent = (nextState, callback) => require.ensure(
-	[], (require) => {
-		callback(null,require("./SomeComponent").default)
-	}
-      ),
-      getAnotherComponent = (nextState, callback) => require.ensure(
-        [], (require) => {
-           	callback(null,require("./SomeComponent").default)
-        }
-      );
-export default (
-   <Route path="/" component={Layout}>
-       <IndexRoute getComponent={getSomeComponent }/>
-       <Route path=”/another” getComponent={getAnotherComponent }/>
-   </Route>
-)
