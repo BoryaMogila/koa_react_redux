@@ -1,10 +1,22 @@
 require("./app/app.js");
 
-import {renderToString} from 'react-dom/server';
-import MyComponent from './MyComponent';
+// ./routes
+import React from 'react';
+import {Route, IndexRoute} from 'react-router'
 
-async function reactApp(ctx){
-	ctx.body = renderToString(MyComponent);
-}
-
-export default reactApp;
+const getSomeComponent = (nextState, callback) => require.ensure(
+	[], (require) => {
+		callback(null,require("./SomeComponent").default)
+	}
+      ),
+      getAnotherComponent = (nextState, callback) => require.ensure(
+        [], (require) => {
+           	callback(null,require("./SomeComponent").default)
+        }
+      );
+export default (
+   <Route path="/" component={Layout}>
+       <IndexRoute getComponent={getSomeComponent }/>
+       <Route path=”/another” getComponent={getAnotherComponent }/>
+   </Route>
+)
