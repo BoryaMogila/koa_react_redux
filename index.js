@@ -1,5 +1,6 @@
 require("./app/app.js");
 
+// ./superagentFactory
 export default (params) => {
     params = params || {};
     superagent.use(superagentPrefix(params.baseUrl || config.baseURL));
