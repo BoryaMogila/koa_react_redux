@@ -1,18 +1,10 @@
 require("./app/app.js");
 
-import React, {Component} from 'react';
-import SomeComponent from './SomeComponent';
-import AnotherComponent from './AnotherComponent';
+import {renderToString} from 'react-dom/server';
+import MyComponent from './MyComponent';
 
-
-class MyComponent extends Component{
-   render(){
-      return(
-	<div>
-	   <SomeComponent />
-           <AnotherComponent />
-	</div>
-      )
-   }
+async function reactApp(ctx){
+	ctx.body = renderToString(MyComponent);
 }
-export default MyComponent;
+
+export default reactApp;
