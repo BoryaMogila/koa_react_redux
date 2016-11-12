@@ -1,8 +1,13 @@
 require("./app/app.js");
 
-import superagentWithCache from 'superagent-cache';
-import config from './config'
-import superagentPrefix from 'superagent-prefix'
-import superagent from 'superagent-use'
-import superagentPromisePlugin from 'superagent-promise-plugin'
-import {isBrowser} from 'newbuild_library/helpers/environment'
+export default (params) => {
+    params = params || {};
+    superagent.use(superagentPrefix(params.baseUrl || config.baseURL));
+    //Включаємо у браузері кешування аякс запитів, щоб не повторювати ті ж самі запити на витяжку данних
+    if (isBrowser()) superagentWithCache(superagent, undefined, {expiration: params.cacheTime || undefined});
+    if (params.withPromise !== false) {
+        superagentPromisePlugin.Promise = Promise;
+        superagentPromisePlugin.patch(superagent);
+    }
+    return superagent;
+}
