@@ -1,10 +1,22 @@
 require("./app/app.js");
 
-// ./fetchComponentData
-export default (dispatch, components, params, props) => {
-    return Promise.all(
-        components
-            .filter(component => typeof component.fetchData === 'function')
-            .map(component => component.fetchData({dispatch, params, props}))
-    );
+// ./MyComponent
+import React, {Component} from 'react';
+import {connect} from ‘react-redux’;
+import someAsyncAction from ‘./someAsyncAction’
+
+
+class MyComponent extends Component{
+
+
+	static fetchData({dispatch, params, props}){
+	const promiseArr = [
+            	dispatch(someAsyncAction (/*параметри для екшена*/));
+        	];
+        	return Promise.all(promiseArr);
+}
+componentDidMount(){
+	const {props} = this,
+	{dispatch, params} = props;
+	MyComponent.fetchData({dispatch, params, props});
 }
