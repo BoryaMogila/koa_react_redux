@@ -1,10 +1,8 @@
 require("./app/app.js");
 
-    externals: nodeModules,
-    plugins: [
-        new webpack.IgnorePlugin(/\.(css|less)$/),
-        new webpack.BannerPlugin('require("source-map-support").install();',
-            { raw: true, entryOnly: false })
-    ],
-    devtool: 'sourcemap'
-};
+import superagentWithCache from 'superagent-cache';
+import config from './config'
+import superagentPrefix from 'superagent-prefix'
+import superagent from 'superagent-use'
+import superagentPromisePlugin from 'superagent-promise-plugin'
+import {isBrowser} from 'newbuild_library/helpers/environment'
