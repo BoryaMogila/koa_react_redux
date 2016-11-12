@@ -1,19 +1,18 @@
 require("./app/app.js");
 
-// ./MyComponent
 import React, {Component} from 'react';
-import {connect} from ‘react-redux’;
-import someAsyncAction from ‘./someAsyncAction’
+import SomeComponent from './SomeComponent';
+import AnotherComponent from './AnotherComponent';
+
 
 class MyComponent extends Component{
-	static fetchData({dispatch, params, props}){
-		const promiseArr = [
-			dispatch(someAsyncAction (/*параметри для екшена*/));
-			];
-			return Promise.all(promiseArr);
-	}
-	componentDidMount(){
-		const {props} = this,
-		{dispatch, params} = props;
-		MyComponent.fetchData({dispatch, params, props});
-	}
+   render(){
+      return(
+	<div>
+	   <SomeComponent />
+           <AnotherComponent />
+	</div>
+      )
+   }
+}
+export default MyComponent;
