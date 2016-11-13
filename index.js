@@ -10,11 +10,12 @@ import SeoComponent from './SeoComponent'
     }
     }
     render(){
-              return(
-                    <div>
-                    {/*ваш jsx*/}
-                       </div>
-            )
-          }
-    }
-export default MyComponent;
+        return(
+                <div>
+                  <SeoComponent seo= {/* об'єкт з SEO данними*/}/>
+                  {/*ваш jsx*/}
+                </div>
+           )
+         }
+   }
+export default connect()(MyComponent);
