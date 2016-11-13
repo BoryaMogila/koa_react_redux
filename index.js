@@ -1,21 +1,12 @@
 require("./app/app.js");
 
-import SeoComponent from './SeoComponent'
+import Koa from'koa';
+import errorHeandler from '.errorHeandler'
+import reactApp from './reactApp'
+const app = new Koa();
 
-    componentWillReceiveProps(nextProps){
-        const {props} = this,
-        {dispatch, params} = nextProps;
-        if(/*ваше рішення оновлення данних */){
-        MyComponent.fetchData({dispatch, params, props});
-    }
-    }
-    render(){
-        return(
-                <div>
-                  <SeoComponent seo= {/* об'єкт з SEO данними*/}/>
-                  {/*ваш jsx*/}
-                </div>
-           )
-         }
-   }
-export default connect()(MyComponent);
+app.use(errorHeandler);
+
+app.use(reactApp);
+
+app.listen(3000);
