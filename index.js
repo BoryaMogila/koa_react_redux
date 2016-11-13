@@ -1,5 +1,7 @@
 require("./app/app.js");
 
+import SeoComponent from './SeoComponent'
+
     componentWillReceiveProps(nextProps){
         const {props} = this,
         {dispatch, params} = nextProps;
