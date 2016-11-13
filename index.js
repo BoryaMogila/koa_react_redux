@@ -1,14 +1,18 @@
 require("./app/app.js");
 
-// ./superagentFactory
-export default (params) => {
-    params = params || {};
-    superagent.use(superagentPrefix(params.baseUrl || config.baseURL));
-    //Включаємо у браузері кешування аякс запитів, щоб не повторювати ті ж самі запити на витяжку данних
-    if (isBrowser()) superagentWithCache(superagent, undefined, {expiration: params.cacheTime || undefined});
-    if (params.withPromise !== false) {
-        superagentPromisePlugin.Promise = Promise;
-        superagentPromisePlugin.patch(superagent);
+    componentWillReceiveProps(nextProps){
+        const {props} = this,
+        {dispatch, params} = nextProps;
+        if(/*ваше рішення оновлення данних */){
+        MyComponent.fetchData({dispatch, params, props});
     }
-    return superagent;
-}
+    }
+    render(){
+              return(
+                    <div>
+                    {/*ваш jsx*/}
+                       </div>
+            )
+          }
+    }
+export default MyComponent;
