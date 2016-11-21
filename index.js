@@ -1,12 +1,12 @@
 require("./app/app.js");
 
-export default const fetchComponentData = (dispatch, components, params, props) => {
-   return Promise.all(
-       components
-           .filter(
-                component => typeof component.fetchData === 'function'
-           )
-           .map(component => component.fetchData(
-                {dispatch, params, props}
-           )));
+export default const seoAsyncAction = ({dispatch}) => {
+   return superagent
+           .get(`https://dom.ria.com/getSeo/`)
+           .then((res) => {
+              return dispatch({
+                 type: "GET_SEO",
+                 payload: res.body
+              })
+           })
 }
